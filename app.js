@@ -42,15 +42,10 @@ mongoose
   .then(() => console.log('MongoDB Connected...'))
   .catch((err) => console.log(err));
 
-<<<<<<< HEAD
 // ES module compatible __dirname
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-=======
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
->>>>>>> 3f70bda6da8f44feb2b39d93a9503c19e7312a76
 // Use Routes
 app.use('/api/items', itemRoutes);
 app.use('/api/users', userRoutes);
