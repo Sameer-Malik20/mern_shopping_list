@@ -2,6 +2,7 @@
   "name": "mern_typescript",
   "version": "1.0.0",
   "description": "MERN Stack with ES6 and Typescript Boilerplate",
+  "type": "module",
   "main": "server.js",
   "scripts": {
     "client-install": "npm install --prefix client",

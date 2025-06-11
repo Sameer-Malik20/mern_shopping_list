@@ -4,13 +4,13 @@ import path from 'path';
 import cors from 'cors';
 import bodyParser from 'body-parser';
 import morgan from 'morgan';
-import config from './config';
+import config from './config/index.js';
 import cookieParser from 'cookie-parser';
 
 // routes
-import authRoutes from './routes/api/auth';
-import itemRoutes from './routes/api/items';
-import userRoutes from './routes/api/users';
+import authRoutes from './routes/api/auth.js';
+import itemRoutes from './routes/api/items.js';
+import userRoutes from './routes/api/users.js';
 
 const { MONGO_URI, MONGO_DB_NAME } = config;
 
