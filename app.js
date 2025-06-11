@@ -20,7 +20,7 @@ app.use(cookieParser());
 // CORS Middleware
 app.use(
   cors({
-    origin:'https://melodious-swan-0a51b8.netlify.app',
+    origin:'http://localhost:3000',
     credentials: true,
   })
 );
