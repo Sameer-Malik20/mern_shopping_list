@@ -5,6 +5,7 @@ import cors from 'cors';
 import bodyParser from 'body-parser';
 import morgan from 'morgan';
 import config from './config';
+import cookieParser from 'cookie-parser';
 
 // routes
 import authRoutes from './routes/api/auth';
@@ -14,7 +15,7 @@ import userRoutes from './routes/api/users';
 const { MONGO_URI, MONGO_DB_NAME } = config;
 
 const app = express();
-
+app.use(cookieParser());
 // CORS Middleware
 app.use(cors());
 // Logger Middleware
@@ -30,10 +31,10 @@ mongoose
   .connect(db, {
     useNewUrlParser: true,
     useCreateIndex: true,
-    useUnifiedTopology: true
+    useUnifiedTopology: true,
   }) // Adding new mongo url parser
   .then(() => console.log('MongoDB Connected...'))
-  .catch(err => console.log(err));
+  .catch((err) => console.log(err));
 
 // Use Routes
 app.use('/api/items', itemRoutes);

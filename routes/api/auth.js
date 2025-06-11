@@ -33,7 +33,12 @@ router.post('/login', async (req, res) => {
 
     const token = jwt.sign({ id: user._id }, JWT_SECRET, { expiresIn: 3600 });
     if (!token) throw Error('Couldnt sign the token');
-
+    res.cookie("token", token, {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === "production" ? true : false,
+      sameSite: "lax",
+      maxAge: 1000 * 60 * 60 * 24 * 3, // 3 days
+    });
     res.status(200).json({
       token,
       user: {
