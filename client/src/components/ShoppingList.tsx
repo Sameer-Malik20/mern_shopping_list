@@ -10,22 +10,13 @@ const ShoppingList = ({
   item,
   isAuthenticated,
   deleteItem,
-  editItem, // <-- add this
-}: IShoppingList & { editItem: Function }) => {
+}: IShoppingList) => {
   useEffect(() => {
     getItems();
   }, [getItems]);
 
   const handleDelete = (id: string) => {
     deleteItem(id);
-  };
-
-  const handleEdit = (id: string) => {
-    // Example: prompt user for new name
-    const newName = window.prompt('Edit item name:');
-    if (newName && newName.trim()) {
-      editItem(id, { name: newName });
-    }
   };
 
   const { items } = item;

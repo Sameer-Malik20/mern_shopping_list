@@ -6,6 +6,7 @@ import bodyParser from 'body-parser';
 import morgan from 'morgan';
 import config from './config/index.js';
 import cookieParser from 'cookie-parser';
+import { fileURLToPath } from 'url';
 
 // routes
 import authRoutes from './routes/api/auth.js';
@@ -17,7 +18,12 @@ const { MONGO_URI, MONGO_DB_NAME } = config;
 const app = express();
 app.use(cookieParser());
 // CORS Middleware
-app.use(cors());
+app.use(
+  cors({
+    origin: 'http://localhost:3000', // trailing slash mat lagayein
+    credentials: true,
+  })
+);
 // Logger Middleware
 app.use(morgan('dev'));
 // Bodyparser Middleware
@@ -36,19 +42,13 @@ mongoose
   .then(() => console.log('MongoDB Connected...'))
   .catch((err) => console.log(err));
 
+// ES module compatible __dirname
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
 // Use Routes
 app.use('/api/items', itemRoutes);
 app.use('/api/users', userRoutes);
 app.use('/api/auth', authRoutes);
-
-// Serve static assets if in production
-if (process.env.NODE_ENV === 'production') {
-  // Set static folder
-  app.use(express.static('client/build'));
-
-  app.get('*', (req, res) => {
-    res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
-  });
-}
 
 export default app;
