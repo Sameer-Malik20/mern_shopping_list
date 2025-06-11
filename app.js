@@ -6,6 +6,7 @@ import bodyParser from 'body-parser';
 import morgan from 'morgan';
 import config from './config/index.js';
 import cookieParser from 'cookie-parser';
+import { fileURLToPath } from 'url';
 
 // routes
 import authRoutes from './routes/api/auth.js';
@@ -36,6 +37,8 @@ mongoose
   .then(() => console.log('MongoDB Connected...'))
   .catch((err) => console.log(err));
 
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 // Use Routes
 app.use('/api/items', itemRoutes);
 app.use('/api/users', userRoutes);
